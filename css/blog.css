@@ -147,3 +147,9 @@ blockquote {
 	margin-top: 30px;
 	margin-bottom: 20px;
 }
+
+.counter {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
