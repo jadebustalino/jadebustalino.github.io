@@ -79,7 +79,7 @@ $(document).ready(function() {
 
   $(function() {
     typed.typed({
-      strings: ["HI, I'M JADE BUSTALIÑO.", "THE MOST AMBITOUS HUMAN BEING YOU'LL EVER MEET."],
+      strings: ["HI, I'M JADE BUSTALIÑO.", "THE MOST AMBITIOUS HUMAN BEING YOU'LL EVER MEET."],
       typeSpeed: 100,
       loop: true,
     });
