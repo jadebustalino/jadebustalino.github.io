@@ -16,6 +16,10 @@ body {
   box-sizing: border-box;
 }
 
+button {
+  text-shadow: 3px 3px 3px #ababab;
+}
+
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
@@ -249,7 +253,7 @@ nav ul li a {
 
 
 #header .header-content {
-  height: 100vh;
+  height: 150vh;
   text-align: left;
   width: 100%;
   display: flex;
@@ -263,6 +267,8 @@ nav ul li a {
   margin-bottom: 10px;
   text-transform: uppercase;
   color: #fff;
+  font-family: "Special Elite";
+  text-shadow: 3px 3px 3px #ababab;
 }
 
 .header-content p {
@@ -272,6 +278,8 @@ nav ul li a {
   margin-bottom: 30px;
   color: #fff;
   font-weight: 500;
+  font-family: "Special Elite";
+  text-shadow: 3px 3px 3px #ababab;
 }
 
 .header-content .list-social li {
@@ -280,7 +288,11 @@ nav ul li a {
 }
 
 .header-content .list-social li i {
-  color: #fff;
+  color: #ffffff;
+  font-size: 25px;
+}
+.header-content .list-social-header li i {
+  color: #ffffff;
   font-size: 25px;
 }
 
@@ -497,6 +509,8 @@ nav ul li a {
   -o-transition: all 0.5s ease-in-out 0s;
   -webkit-transition: all 0.5s ease-in-out 0s;
   transition: all 0.5s ease-in-out 0s;
+  font-family: "Special Elite";
+  text-shadow: 3px 3px 3px #ababab;
 }
 
 .journal-block .journal-info .journal-txt h4 a:hover {
@@ -579,7 +593,7 @@ nav ul li a {
 /*-----------------------------------------------------------------------------------*/
 
 #footer {
-  background: #f7f7f7;
+  background: #a3a2a2;
   padding-top: 50px;
   padding-bottom: 50px;
 }

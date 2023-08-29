@@ -79,7 +79,7 @@ $(document).ready(function() {
 
   $(function() {
     typed.typed({
-      strings: ["HI, I'M JADE BUSTALIÑO.", "THE MOST AMBITIOUS HUMAN BEING YOU'LL EVER MEET."],
+      strings: ["HI, I'M JADE BUSTALIÑO."],
       typeSpeed: 100,
       loop: true,
     });
@@ -89,7 +89,7 @@ $(document).ready(function() {
 
   $(function() {
     shop.shop({
-      strings: ["COMING SOON!", "STAY UPDATED BY FOLLOWING ME ON MY SOCIALS!"],
+      strings: ["SOON!"],
       typeSpeed: 25,
       loop: true,
     });

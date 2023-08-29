@@ -1321,6 +1321,10 @@
 
 .ion-social-instagram-outline:before { content: "\f350"; }
 
+.ion-android-microphone:before { content: "\f2ec"; }
+
+.ion-android-microphone-outline:before { content: "\f2ec"; }
+
 .ion-social-tiktok:before { content: "\f6cc"; }
 
 .ion-social-javascript:before { content: "\f4e5"; }
