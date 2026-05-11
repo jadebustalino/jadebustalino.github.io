@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paglalakbay Tungo sa Sarili — The Mustafa Chronicle</title>
+<link rel="icon" href="../assets/images/logo.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=IM+Fell+English:ital@0;1&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#1C1608;--paper-light:#201A0C;--paper-dark:#140E06;--ink:#D4C5A0;--ink-medium:#B8A880;--ink-light:#968860;--ink-faded:#7A6C4E;--rule-color:#4A3D28;--accent-red:#C07040;--font-display:'Playfair Display',Georgia,serif;--font-body:'Cormorant Garamond',Garamond,serif;--font-accent:'IM Fell English',serif;--font-fraktur:'UnifrakturMaguntia',cursive}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(ellipse at 50% 20%,rgba(180,140,60,.06) 0%,transparent 70%),radial-gradient(ellipse at 20% 15%,rgba(80,65,30,.05) 0%,transparent 40%),linear-gradient(180deg,var(--paper-light),var(--paper),var(--paper-dark));background-attachment:fixed;min-height:100vh}
+body.lightmode{--paper:#F2E8D0;--paper-light:#F8F1E0;--paper-dark:#E0D4B8;--ink:#1A1008;--ink-medium:#3D2E1A;--ink-light:#6B5B45;--ink-faded:#8B7D65;--rule-color:#2C1810;--accent-red:#6B1A1A}
+body.lightmode{background:radial-gradient(ellipse at 20% 15%,rgba(160,130,80,.08) 0%,transparent 40%),linear-gradient(180deg,var(--paper-light),var(--paper),var(--paper-dark));background-attachment:fixed}
+a{color:var(--ink-medium);transition:color .3s}
+a:hover{color:var(--accent-red)}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:200px}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}
+/* Masthead */
+.mast{text-align:center;padding:24px 0 12px;border-bottom:3px double var(--rule-color)}
+.mast-title{font-family:var(--font-fraktur);font-size:clamp(28px,7vw,52px);color:var(--ink);line-height:1;margin-bottom:4px}
+.mast a{text-decoration:none;color:var(--ink)}
+.mast-sub{font-family:var(--font-accent);font-style:italic;font-size:clamp(10px,1.8vw,13px);color:var(--ink-faded);margin-bottom:8px}
+/* Nav */
+.bnav{display:flex;justify-content:center;flex-wrap:wrap;gap:0;border-bottom:2px solid var(--rule-color);padding:0;margin-bottom:32px}
+.bnav a{font-family:var(--font-accent);font-size:clamp(10px,1.5vw,12px);text-transform:uppercase;letter-spacing:2px;color:var(--ink-medium);text-decoration:none;padding:8px 14px;border-left:1px solid rgba(74,61,40,.3);transition:color .3s}
+.bnav a:first-child{border-left:none}
+.bnav a:hover{color:var(--accent-red)}
+/* Article */
+.article-date{font-family:var(--font-accent);font-size:11px;text-transform:uppercase;letter-spacing:3px;color:var(--ink-faded);margin-bottom:4px}
+.article-title{font-family:var(--font-display);font-size:clamp(24px,5vw,40px);font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:16px}
+.rule{height:2px;background:var(--rule-color);margin:0 0 4px}
+.rule-thin{height:1px;background:rgba(74,61,40,.3);margin:0 0 24px}
+.article-body{margin-bottom:32px}
+.article-body p{font-family:var(--font-body);font-size:clamp(15px,2vw,18px);color:var(--ink-medium);line-height:1.8;text-align:justify;hyphens:auto;margin-bottom:16px}
+.article-body p:first-of-type::first-letter{font-family:var(--font-display);font-weight:800;float:left;font-size:3.6em;line-height:.75;padding:4px 8px 0 0;color:var(--ink)}
+.article-body img{max-width:100%;height:auto;border:2px solid var(--rule-color);margin:16px 0;display:block}
+.article-body ul{margin:12px 0 16px 24px;font-family:var(--font-body);font-size:clamp(15px,2vw,18px);color:var(--ink-medium);line-height:1.8}
+.article-body li{margin-bottom:4px}
+.ornament{text-align:center;font-size:14px;color:var(--ink-faded);margin:24px 0;opacity:.5;letter-spacing:8px}
+/* Community */
+.comm{border:2px solid var(--rule-color);padding:20px;margin:32px 0;text-align:center;background:rgba(74,61,40,.05)}
+.comm h3{font-family:var(--font-display);font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:3px;margin-bottom:8px;color:var(--ink)}
+.comm p{font-family:var(--font-body);font-size:14px;color:var(--ink-light);line-height:1.6}
+.comm-btn{display:inline-block;font-family:var(--font-accent);font-size:12px;text-transform:uppercase;letter-spacing:3px;color:var(--paper);background:var(--ink);padding:10px 24px;text-decoration:none;margin-top:10px;transition:all .3s}
+.comm-btn:hover{background:var(--accent-red);color:#fff}
+/* Footer */
+.bfooter{text-align:center;padding:24px 0 40px;border-top:3px double var(--rule-color);margin-top:32px}
+.bfooter-links{display:flex;justify-content:center;gap:16px;margin-bottom:12px;flex-wrap:wrap}
+.bfooter-links a{font-family:var(--font-accent);font-size:12px;color:var(--ink-faded);text-decoration:none;text-transform:uppercase;letter-spacing:2px}
+.bfooter-links a:hover{color:var(--accent-red)}
+.bfooter-text{font-family:var(--font-accent);font-size:10px;color:var(--ink-faded);letter-spacing:2px;opacity:.6}
+/* Lamp */
+.lamp{position:fixed;bottom:20px;right:20px;z-index:100;font-size:20px;background:var(--paper-light);border:2px solid var(--rule-color);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 12px rgba(180,140,60,.1)}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<button class="lamp" id="lampBtn" title="Toggle Light/Dark">☀️</button>
+<div class="wrap">
+  <header class="mast">
+    <a href="../index.html"><div class="mast-title">The Mustafa Chronicle</div></a>
+    <div class="mast-sub">A periodical of personal reflections</div>
+  </header>
+  <nav class="bnav">
+    <a href="../index.html">Home</a>
+    <a href="../index.html#literary">Literary Notes</a>
+    <a href="../index.html#community-section">Community</a>
+  </nav>
+  <div class="article-date">25 July 2023</div>
+  <h1 class="article-title">Paglalakbay Tungo sa Sarili</h1>
+
+  <div class="article-body">
+    
+
+<img src="../assets/gallery/4.jpg" width="650">
+
+<p>Naintindihan ko na may mga bagay na hindi maituturo ng kahit sino man o matutunan sa pakikinig lang o pagbabasa. May mga bagay na kailangan nating maranasan bago natin maintindihan.
+
+<p>Sa pakikipagsapalaran kong ito sa anim na buwan mas naiintindihan ko ang sarili ko, mas naiintindihan ko ang sitwasyon ko at mas napapalapit ako sa maykapal.
+
+<p>Sa anim na buwan may mga araw na nakatulala lang ako, sumasayaw, kumakanta, tumatawa ng mag-isa at wala akong nakakausap kundi ang sarili ko lang.
+
+<p>Wala man akong kasama, wala mang akong kausap, pero kahit kailan man hindi ko naramdaman ang kalungkutan na mag-isa kasi kasama ko ang sarili ko at may Diyos na nanonood saakin.
+
+<p>Going to an adventure, challenging myself, seeking discomfort and trying new experiences are the things the keeps me alive. Ito ang mga bagay na nagbibigay ng kulay sa madilim kong buhay.
+
+<p>Naiintindihan ko na lahat tayo magkaiba at iba't iba ang mga bagay na gusto nating maranasan sa buhay.
+
+<p>Kaya ikaw? Ano ang sakripisyo na kaya mong gawin para maranasan ang bagay na gusto mong maranasan?
+  </div>
+
+  <div class="ornament">— ✦ ✦ ✦ —</div>
+  <div class="comm">
+    <h3>The Philippine League</h3>
+    <p>An online community where Filipinos unite to seek truth, share meaningful conversations, and build lasting friendships.</p>
+    <a href="https://discord.gg/yuxjaEQsvM" target="_blank" class="comm-btn">Join the Community</a>
+  </div>
+
+  <footer class="bfooter">
+    <div class="bfooter-links">
+      <a href="https://www.youtube.com/@themightymustafa" target="_blank">YouTube</a>
+      <a href="https://x.com/jadebustalino" target="_blank">𝕏</a>
+      <a href="https://www.instagram.com/themightymustafa/" target="_blank">Instagram</a>
+    </div>
+    <div class="bfooter-text">The Mighty Mustafa · Anno MMXXVI</div>
+  </footer>
+</div>
+<script>
+document.getElementById('lampBtn').addEventListener('click',function(){
+  document.body.classList.toggle('lightmode');
+  this.textContent=document.body.classList.contains('lightmode')?'🕯️':'☀️';
+});
+</script>
+</body>
+</html>

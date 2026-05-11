@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sulat — The Mustafa Chronicle</title>
+<link rel="icon" href="../assets/images/logo.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=IM+Fell+English:ital@0;1&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#1C1608;--paper-light:#201A0C;--paper-dark:#140E06;--ink:#D4C5A0;--ink-medium:#B8A880;--ink-light:#968860;--ink-faded:#7A6C4E;--rule-color:#4A3D28;--accent-red:#C07040;--font-display:'Playfair Display',Georgia,serif;--font-body:'Cormorant Garamond',Garamond,serif;--font-accent:'IM Fell English',serif;--font-fraktur:'UnifrakturMaguntia',cursive}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(ellipse at 50% 20%,rgba(180,140,60,.06) 0%,transparent 70%),radial-gradient(ellipse at 20% 15%,rgba(80,65,30,.05) 0%,transparent 40%),linear-gradient(180deg,var(--paper-light),var(--paper),var(--paper-dark));background-attachment:fixed;min-height:100vh}
+body.lightmode{--paper:#F2E8D0;--paper-light:#F8F1E0;--paper-dark:#E0D4B8;--ink:#1A1008;--ink-medium:#3D2E1A;--ink-light:#6B5B45;--ink-faded:#8B7D65;--rule-color:#2C1810;--accent-red:#6B1A1A}
+body.lightmode{background:radial-gradient(ellipse at 20% 15%,rgba(160,130,80,.08) 0%,transparent 40%),linear-gradient(180deg,var(--paper-light),var(--paper),var(--paper-dark));background-attachment:fixed}
+a{color:var(--ink-medium);transition:color .3s}
+a:hover{color:var(--accent-red)}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:200px}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}
+/* Masthead */
+.mast{text-align:center;padding:24px 0 12px;border-bottom:3px double var(--rule-color)}
+.mast-title{font-family:var(--font-fraktur);font-size:clamp(28px,7vw,52px);color:var(--ink);line-height:1;margin-bottom:4px}
+.mast a{text-decoration:none;color:var(--ink)}
+.mast-sub{font-family:var(--font-accent);font-style:italic;font-size:clamp(10px,1.8vw,13px);color:var(--ink-faded);margin-bottom:8px}
+/* Nav */
+.bnav{display:flex;justify-content:center;flex-wrap:wrap;gap:0;border-bottom:2px solid var(--rule-color);padding:0;margin-bottom:32px}
+.bnav a{font-family:var(--font-accent);font-size:clamp(10px,1.5vw,12px);text-transform:uppercase;letter-spacing:2px;color:var(--ink-medium);text-decoration:none;padding:8px 14px;border-left:1px solid rgba(74,61,40,.3);transition:color .3s}
+.bnav a:first-child{border-left:none}
+.bnav a:hover{color:var(--accent-red)}
+/* Article */
+.article-date{font-family:var(--font-accent);font-size:11px;text-transform:uppercase;letter-spacing:3px;color:var(--ink-faded);margin-bottom:4px}
+.article-title{font-family:var(--font-display);font-size:clamp(24px,5vw,40px);font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:16px}
+.rule{height:2px;background:var(--rule-color);margin:0 0 4px}
+.rule-thin{height:1px;background:rgba(74,61,40,.3);margin:0 0 24px}
+.article-body{margin-bottom:32px}
+.article-body p{font-family:var(--font-body);font-size:clamp(15px,2vw,18px);color:var(--ink-medium);line-height:1.8;text-align:justify;hyphens:auto;margin-bottom:16px}
+.article-body p:first-of-type::first-letter{font-family:var(--font-display);font-weight:800;float:left;font-size:3.6em;line-height:.75;padding:4px 8px 0 0;color:var(--ink)}
+.article-body img{max-width:100%;height:auto;border:2px solid var(--rule-color);margin:16px 0;display:block}
+.article-body ul{margin:12px 0 16px 24px;font-family:var(--font-body);font-size:clamp(15px,2vw,18px);color:var(--ink-medium);line-height:1.8}
+.article-body li{margin-bottom:4px}
+.ornament{text-align:center;font-size:14px;color:var(--ink-faded);margin:24px 0;opacity:.5;letter-spacing:8px}
+/* Community */
+.comm{border:2px solid var(--rule-color);padding:20px;margin:32px 0;text-align:center;background:rgba(74,61,40,.05)}
+.comm h3{font-family:var(--font-display);font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:3px;margin-bottom:8px;color:var(--ink)}
+.comm p{font-family:var(--font-body);font-size:14px;color:var(--ink-light);line-height:1.6}
+.comm-btn{display:inline-block;font-family:var(--font-accent);font-size:12px;text-transform:uppercase;letter-spacing:3px;color:var(--paper);background:var(--ink);padding:10px 24px;text-decoration:none;margin-top:10px;transition:all .3s}
+.comm-btn:hover{background:var(--accent-red);color:#fff}
+/* Footer */
+.bfooter{text-align:center;padding:24px 0 40px;border-top:3px double var(--rule-color);margin-top:32px}
+.bfooter-links{display:flex;justify-content:center;gap:16px;margin-bottom:12px;flex-wrap:wrap}
+.bfooter-links a{font-family:var(--font-accent);font-size:12px;color:var(--ink-faded);text-decoration:none;text-transform:uppercase;letter-spacing:2px}
+.bfooter-links a:hover{color:var(--accent-red)}
+.bfooter-text{font-family:var(--font-accent);font-size:10px;color:var(--ink-faded);letter-spacing:2px;opacity:.6}
+/* Lamp */
+.lamp{position:fixed;bottom:20px;right:20px;z-index:100;font-size:20px;background:var(--paper-light);border:2px solid var(--rule-color);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 12px rgba(180,140,60,.1)}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<button class="lamp" id="lampBtn" title="Toggle Light/Dark">☀️</button>
+<div class="wrap">
+  <header class="mast">
+    <a href="../index.html"><div class="mast-title">The Mustafa Chronicle</div></a>
+    <div class="mast-sub">A periodical of personal reflections</div>
+  </header>
+  <nav class="bnav">
+    <a href="../index.html">Home</a>
+  </nav>
+  <div class="article-date">1 January 2023</div>
+  <h1 class="article-title">Sulat</h1>
+
+  <div class="article-body">
+    
+<p>Ngano magsulat ta? Sa tibuok nakong kinabuhi nga pagka-studyante walay maistra o maistro ang nibutag sa pangutana nga ngano diay magsulat ta? Ingon nila magsulat ta kay kailangan ta magpasa og notebook, kay gradohan ang notebook og para naa tay reviewer sa exam. Exam nga makalimtan rapud nato. Magsulat ta'g essay, poem kay dako ni nga percentage sa grading system, mao ni ang written works. Maghimo ta og thesis, research kay apil ni sa learning material sa atoang subject. 
+
+<p>Pero giignan ba ta nga ngano magsulat ta? Nagsulat lang ba ta para sa grado?
+
+<p>Imaginon nato kung unsa ka powerful ang pagsulat. Ang Bibliya gisulat thousands of years ago, gi-compose og mga pila ka libro nga gisulat sa pila ka tawo sa tulo ka continents nga gi-translate sa pila ka lengwahe nga hangtod karon buhi lang gihapon nga nagpausob og kinabuhi sa mga pila ka tawo.
+
+<p>Si Jose Protacio Rizal, atoang bayani, gisulat niya ang Noli Me Tangere at El Filibusterismo para e-expose ang pag-abuso og paggamit sa mga Spaniards sa atoa. Gigamit niya ang pagsulat as a weapon para mahikayat ang mga Pilipino nga mag-rebolusyon maong natukod ni Andres Bonifacio ang Katipunan para makamit nato ang kalayaan. 
+
+<p>Imagina ilaang pag-antos nga gisugal nila ilaang mga kinabuhi para makamit lang nato ang kalayaan unya magtan-aw raka'g mga videos sa mga babayi tibuok adlaw nga ga igyad-igyad ang mga lubot? Mao ba ni ang kinabuhi nga gisugal sa atoang mga bayani? Wala ba ta naulaw?
+
+<p>Ngano magsulat ta? Tubagon nako ang pangutana pinaagi sa akoang experience sa pagsulat maong usbon nako. Ngano nagsulat ko? But first, how much experience do I have? Nagsulat ko since 2018.
+<br>
+<br>
+<img src="../assets/gallery/3.gif" class="img-responsive" width="500">
+
+<p>Writer ba ko? Wala nako gi-consider akoang kaugalingon nga writer, maybe in the future magsulat ko'g libro.
+
+<p>Ngano nagsulat ko? Nagsulat ko kay ganahan nako e-express akoang kaugalingon, akoang mga ideas, mga opinions, mga pangutana nako sa kinabuhi nga dili nako matubag, “Unsay feeling nga kompleto og malipayon nga pamilya?”
+
+<p>Nagsulat ko kay naay mga problema nga dili nako masabtan, dili nako masulbad pero wala koy maisturyahan maong nagsulat ko kay nagkabug-at, nagkabug-at akoang dughan maong gipagawas nako sa pamaagi nga pagsulat. 
+
+<p>Nagsulat ko kay ganahan nako balikan ang mga memorable og remarkable nga mga butang nga nahitabo sa akoang kinabuhi nga dili nako ganahan kalimtan. Dili ko ganahan nga matigulang nako nga maghulat nalang ko kung kanus-a ko mamatay maong ganahan nako balikan akoang mga kasakit, kaguol, kalagot og mga kalipay.  
+
+<p>Nagsulat ko kay daghan kaayo ko'g ambition, pangandoy og mga plano sa kinabuhi nga ganahan nako makab-ot. Gisulat nako ang kinabuhi nga akoang ganahan, unsang klaseha nga pamilya akoang ganahan, unsa nga klase nga mga tawo nga akoang ganahan sa akoang kinabuhi.  Gisulat sad nako ang kinabuhi nga dili nako ganahan para kabalo ko unsa ang angay likayan, para malikayan nako ang kinabuhi nga mesirable, malikayan nako ang kinabuhi nga naa sa impyerno.
+
+<p>Nagsulat ko kay I wanna be remembered. Ganahan nako ipasa akoang istorya sa kinabuhi sa akoang mga anak puhon, sa akoang mga apo, unsa akoang mga nakat-unan sa kinabuhi nga magamit nila sa ilaang pagdako.
+
+<p>Sa pila katuig nga nilabay, na-realize nako nga dili nako kailangan og ubang tawo para maminaw sa mga hinanakit nako sa kinabuhi kay naa koy papel og ballpen. Dili ko mabalaka og judgement, dili ko mabalaka nga e-take advantage akoang feelings, akoang emotions. 
+
+<p>Sa kadugayan nako og sinulat, nakita nako ang kalayo sa kangitngit. Kay sauna, maabtan og pila ka simana ayha mo gaan akoang dughan. Maadlawan tulog ko, magabie naa rako'g kwarto, makadlawon mo gawas ko nga ako ra isa. Ang pila ka simana nahimo og simana, nahimo og pila nalang ka adlaw, nahimo og adlaw, nahimo og oras, minuto ayha mo gaan akoang dughan. Dayun karon, wala nako kahinumdom kung kanus-a ko last naguol kay mas nailhan na nako akoang kaugalingon, mas nasabtan nako akoang sitwasyon og gipatay na nako akoang daan nga kaugalingon.
+
+<p>Nasabtan nako sa libro nga <em>Man's Search For Meaning</em> nga dili gyud nato kontrolado unsay mahitabo nato sa atoang kinabuhi pero kita maoy permi kontrolado sa atoang emotion, unsa atoang bation og unsa atoang buhaton kung unsa man gani mahitabo nato.
+<br>
+<br>
+<img src="../assets/gallery/2.png" class="img-responsive" width="650">
+<p>Tan-awa ko karon, naa nay improvement. Gihinay-hinay na nako og tarong akoang kinabuhi, gihinay-hinay na nako og disiplina akoang kaugalingon. Mas na-confident ko maong naa koy nawong nga ipakita ninyo. Maulaw rako sa mga butang nga kabalo ko dili insakto.
+
+<p>Ikaw? Kanus-a man nimo sulaton imoang mga kaagi nga dili nimo ganahan kalimtan?
+
+<p>Kanus-a man nimo sulaton ang mga problema nga dili nimo masabtan og ganahan nimo masabtan?
+
+<p>Kanus-a man nimo sulaton imoang mga goals, imoang mga plano, imoang mga pangandoy sa kinabuhi nga ganahan nimo makab-ot?
+
+<p>Maong sulata imoang mga plano kay ang goal nga walay plano, pangandoy ra. Mo ana dayun ka nga "Naa man koy mga plano pero gibutang ra nako sa akoang utok." Ayaw. Sulata gyud kay wala ta kabalo unsay mahitabo sa atoang ugma maong naay higayon nga mausob atoang mga plano sa kinabuhi dayun makalimot na dayun ta nga naa diay tay mga plano, naa diay tay mga pangandoy. Malubong na dayun nato atoang kaugalingon sa kasakit og kaguol. Maong sulata kay kung magsulat bitaw ka mas mailhan nimo imoang kaugalingon, mas masabtan nimo imoang sitwasyon, makabalo ka unsay dapat buhaton og unsay dapat usbon.
+
+<p>Kay unsaon nato pagtikang paabante, pag-move forward kung mo likay ta sa atoang mga problema?
+
+<p>Unsaon nato pag-move forward kung gi-problema nato ang problema nga wala nato gipili?
+
+<p>Unsaon nato pag-move forward kung nabuhi ra gihapon ta sa atoang sauna?
+
+<p>Unsaon nato pag-move forward kung naa tay problema nga wala gani ga-exist? Gihimo ra nato pinaagi sa atoang hunahuna.
+
+<p>Kung magsugod ka og sulat, okay ra kung pamati nimo nga wala nagkadimao imoang gipangsulat, okay ra kung dili nimo masabtan imoang gipangsulat. Sulata imoang ganahan sulaton. Ipagawas imoang ganahan ipagawas pinaagi sa pagsulat. Tratoha ang papel nga imoang amigo nga andam maminaw nimo, nga dili ka e-judge, nga dili e-take advantage imoang feelings.
+
+<p>Maong pagsugod, pagsugod og sulat para mas mailhan nimo imoang kaugalingon, pagsugod og sulat sa istorya nimo sa kinabuhi nga dili nimo ganahan makalimtan, pagsugod og sulat sa mga problema nimo nga dili nimo masabtan og ganahan nimo masabtan, pagsugod og sulat sa kinabuhi nga imoang ganahan makab-ot.
+  </div>
+
+  <div class="ornament">— ✦ ✦ ✦ —</div>
+  <div class="comm">
+    <h3>The Philippine League</h3>
+    <p>An online community where Filipinos unite to seek truth, share meaningful conversations, and build lasting friendships.</p>
+    <a href="https://discord.gg/yuxjaEQsvM" target="_blank" class="comm-btn">Join the Community</a>
+  </div>
+
+  <footer class="bfooter">
+    <div class="bfooter-links">
+      <a href="https://www.youtube.com/@themightymustafa" target="_blank">YouTube</a>
+      <a href="https://x.com/jadebustalino" target="_blank">𝕏</a>
+      <a href="https://www.instagram.com/themightymustafa/" target="_blank">Instagram</a>
+    </div>
+    <div class="bfooter-text">The Mighty Mustafa · Anno MMXXVI</div>
+  </footer>
+</div>
+<script>
+document.getElementById('lampBtn').addEventListener('click',function(){
+  document.body.classList.toggle('lightmode');
+  this.textContent=document.body.classList.contains('lightmode')?'🕯️':'☀️';
+});
+</script>
+</body>
+</html>

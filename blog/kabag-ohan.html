@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kabag-ohan — The Mustafa Chronicle</title>
+<link rel="icon" href="../assets/images/logo.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=IM+Fell+English:ital@0;1&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#1C1608;--paper-light:#201A0C;--paper-dark:#140E06;--ink:#D4C5A0;--ink-medium:#B8A880;--ink-light:#968860;--ink-faded:#7A6C4E;--rule-color:#4A3D28;--accent-red:#C07040;--font-display:'Playfair Display',Georgia,serif;--font-body:'Cormorant Garamond',Garamond,serif;--font-accent:'IM Fell English',serif;--font-fraktur:'UnifrakturMaguntia',cursive}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(ellipse at 50% 20%,rgba(180,140,60,.06) 0%,transparent 70%),radial-gradient(ellipse at 20% 15%,rgba(80,65,30,.05) 0%,transparent 40%),linear-gradient(180deg,var(--paper-light),var(--paper),var(--paper-dark));background-attachment:fixed;min-height:100vh}
+body.lightmode{--paper:#F2E8D0;--paper-light:#F8F1E0;--paper-dark:#E0D4B8;--ink:#1A1008;--ink-medium:#3D2E1A;--ink-light:#6B5B45;--ink-faded:#8B7D65;--rule-color:#2C1810;--accent-red:#6B1A1A}
+body.lightmode{background:radial-gradient(ellipse at 20% 15%,rgba(160,130,80,.08) 0%,transparent 40%),linear-gradient(180deg,var(--paper-light),var(--paper),var(--paper-dark));background-attachment:fixed}
+a{color:var(--ink-medium);transition:color .3s}
+a:hover{color:var(--accent-red)}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:200px}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}
+/* Masthead */
+.mast{text-align:center;padding:24px 0 12px;border-bottom:3px double var(--rule-color)}
+.mast-title{font-family:var(--font-fraktur);font-size:clamp(28px,7vw,52px);color:var(--ink);line-height:1;margin-bottom:4px}
+.mast a{text-decoration:none;color:var(--ink)}
+.mast-sub{font-family:var(--font-accent);font-style:italic;font-size:clamp(10px,1.8vw,13px);color:var(--ink-faded);margin-bottom:8px}
+/* Nav */
+.bnav{display:flex;justify-content:center;flex-wrap:wrap;gap:0;border-bottom:2px solid var(--rule-color);padding:0;margin-bottom:32px}
+.bnav a{font-family:var(--font-accent);font-size:clamp(10px,1.5vw,12px);text-transform:uppercase;letter-spacing:2px;color:var(--ink-medium);text-decoration:none;padding:8px 14px;border-left:1px solid rgba(74,61,40,.3);transition:color .3s}
+.bnav a:first-child{border-left:none}
+.bnav a:hover{color:var(--accent-red)}
+/* Article */
+.article-date{font-family:var(--font-accent);font-size:11px;text-transform:uppercase;letter-spacing:3px;color:var(--ink-faded);margin-bottom:4px}
+.article-title{font-family:var(--font-display);font-size:clamp(24px,5vw,40px);font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:16px}
+.rule{height:2px;background:var(--rule-color);margin:0 0 4px}
+.rule-thin{height:1px;background:rgba(74,61,40,.3);margin:0 0 24px}
+.article-body{margin-bottom:32px}
+.article-body p{font-family:var(--font-body);font-size:clamp(15px,2vw,18px);color:var(--ink-medium);line-height:1.8;text-align:justify;hyphens:auto;margin-bottom:16px}
+.article-body p:first-of-type::first-letter{font-family:var(--font-display);font-weight:800;float:left;font-size:3.6em;line-height:.75;padding:4px 8px 0 0;color:var(--ink)}
+.article-body img{max-width:100%;height:auto;border:2px solid var(--rule-color);margin:16px 0;display:block}
+.article-body ul{margin:12px 0 16px 24px;font-family:var(--font-body);font-size:clamp(15px,2vw,18px);color:var(--ink-medium);line-height:1.8}
+.article-body li{margin-bottom:4px}
+.ornament{text-align:center;font-size:14px;color:var(--ink-faded);margin:24px 0;opacity:.5;letter-spacing:8px}
+/* Community */
+.comm{border:2px solid var(--rule-color);padding:20px;margin:32px 0;text-align:center;background:rgba(74,61,40,.05)}
+.comm h3{font-family:var(--font-display);font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:3px;margin-bottom:8px;color:var(--ink)}
+.comm p{font-family:var(--font-body);font-size:14px;color:var(--ink-light);line-height:1.6}
+.comm-btn{display:inline-block;font-family:var(--font-accent);font-size:12px;text-transform:uppercase;letter-spacing:3px;color:var(--paper);background:var(--ink);padding:10px 24px;text-decoration:none;margin-top:10px;transition:all .3s}
+.comm-btn:hover{background:var(--accent-red);color:#fff}
+/* Footer */
+.bfooter{text-align:center;padding:24px 0 40px;border-top:3px double var(--rule-color);margin-top:32px}
+.bfooter-links{display:flex;justify-content:center;gap:16px;margin-bottom:12px;flex-wrap:wrap}
+.bfooter-links a{font-family:var(--font-accent);font-size:12px;color:var(--ink-faded);text-decoration:none;text-transform:uppercase;letter-spacing:2px}
+.bfooter-links a:hover{color:var(--accent-red)}
+.bfooter-text{font-family:var(--font-accent);font-size:10px;color:var(--ink-faded);letter-spacing:2px;opacity:.6}
+/* Lamp */
+.lamp{position:fixed;bottom:20px;right:20px;z-index:100;font-size:20px;background:var(--paper-light);border:2px solid var(--rule-color);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 12px rgba(180,140,60,.1)}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<button class="lamp" id="lampBtn" title="Toggle Light/Dark">☀️</button>
+<div class="wrap">
+  <header class="mast">
+    <a href="../index.html"><div class="mast-title">The Mustafa Chronicle</div></a>
+    <div class="mast-sub">A periodical of personal reflections</div>
+  </header>
+  <nav class="bnav">
+    <a href="../index.html">Home</a>
+  </nav>
+  <div class="article-date">2023</div>
+  <h1 class="article-title">Kabag-ohan</h1>
+
+  <div class="article-body">
+    <p>Kung magsugod naka'g himo og kabag-ohan sa imoang kaugalingon kay tapulan ka og kapoyan ka, kay syempre gipili nimo ang lisud nga dalan, gipili nimo nga magsakripisyo sa imoang karon para sa imoang ugma. Tapulan ka kay gasugod palang ka og maglisud paka kay wala paka maanad og ayaw pagdahum nga naa dayun resulta sa imoang mga kahago. Kabalo ba mo nga one of the keys to happiness is less expectation, less expectation is less pain, no expectation is no pain. Mao ng daghan kaayo mo undang kay nagdahum sila nga naa dayun sukli sa ilaang kahago, kay siguro wala nila gi-try ilaang best, siguro 30% ra sa ilaang abilidad ilaang gigamit og kabalo sila nga makabuhat pa sila og mas labaw pa. 
+
+<p>Kung magsugod naka'g himo og kabag-ohan sa imoang kaugalingon kay mabulag ka sa mga tawong palibot nimo, sa imoang mga amigo, kay ikaw nag-jogging unya sila tulog pa naay hangover, nag-workout ka naa ka sa gym unya sila naglaag, nag-invest ka og knowledge pinaagi sa pagbasa unya sila naa sa imnanan naglingaw-lingaw. Mabatian nimo nga nag-inusara nalang ka.
+
+<p>Mahadlok ba ka mag-inusara? Dili ba dapat nga mas mahadlok ka magpabilin kung asa ka? Dili ba dapat nga mas mahadlok ka og walay kabag-ohan sa imoang kaugalingon? Dili ba dapat nga mas mahadlok ka og miserable nga kinabuhi nga mura'g naa ka sa impyerno? Kontento na ba ka sa imoang kinabuhi? Unsaon nalang man imoang mga pangandoy?
+
+<p>Maong e-encourage nato atoang mga amigo nga magbuhat og kabag-ohan kuyog nato og kung dili sila, kailangan nato silang biyaan. Dili pasabot nga atoa silang gibiyaan dili na nato sila amigo. Dili lang gyud nato sila matagaan og oras kay mas gipili nato nga magsakripisyo para sa atoang kaayohan. Mo ana dayun sila nga "Nagbag-o naka," tubaga og "Oo, nagbag-o nako."
+
+<p>Imagine, naa kay circle of friends nga mga limpyado, disiplinado, open og conversation, mag-isturyanay mo sa inyoang mga plano sa kinabuhi, mga progress, mga achievements, mga experiences og mga life lessons. Naga-exchange mo og meaningful nga knowledge og information.
+
+<p>Og e-imagine ang opposite, circle of friends nga walay pang-toothbrush pila na ka simana, walay disiplina, dili open og conversation kay permi ra mag-cellphone og dili maminaw, walay plano sa kinabuhi, walay meaningful experience sige ra og hisgot og bayi, gi gikuan nako si kuan, dili kabalo mo respeto og boundary sa babayi. Wala kay makuha nga meaningful nga knowledge og information gikan nila. Sayang lang sa oras.
+
+<p>Daghan kaayo ko'g amigo nga akoang mabyiaan pero dili pasabot nga naa koy pagdumot nila, dili lang gyud nako sila matagaan og oras.
+
+<p>Naa koy amigo nga dili na niya maaswat iyaang kaugalingong kabugaton kay nagdako siya nga ginahatag sa iyaa ang tanan. Siguro kay natanom na sa iyaang huna-huna nga makuha niya tanang gusto niya nga walay kahago. Kinsa man ang atoang basulon? Siguro nasobraan ra ang gugma sa ginikanan, siguro wala natarong og pagdisiplina o siguro ang ginikanan maoy walay disiplina.
+
+<p>Naa koy amigo nga dili na magbilin para sa iyaang kaugalingon, ginahatag niya ang tanan para sa ubang tawo. Kay siguro sa paghatag sa ubang tawo diha ra niya makita ang importansya niya sa iyaang kaugalingon nga bahala og wala nay mabilin para sa iyaang kaugalingon. 
+
+<p>Naa koy amigo nga sige og pamakak sa iyaang kaugalingon para lang naay ipakita sa ubang tawo, para makakuha og attention. Kay siguro diha ra niya makuha ang attention nga wala niya nakuha nga bahala og mamakak na siya sa iyaang kaugalingon.
+
+<p>Mabiyaan na nato atoang mga amigo nga ganahan pud ta og naay kabag-ohan sa ilaang kaugalingon og kadaghanan sa atoang mga problema kay wala man nato gipili, pero ganahan ba ta magpabilin?
+
+<p>Mahadlok ba ka mawad-an og amigo? Amigoha imoang kaugalingon, isturyaha imoang kaugalingon. Walay mo compliment sa imoa? Pag-atubang sa samin og e-compliment imoang kaugalingon. Ing-ana akoang ginabuhat, mo ana ko nga "Proud kaayo ko nimo Jade, naa nay nakita nga resulta sa mga pila katuig nimong kahago, naniwang naka, gwapo kaayo ka, cute kaayo ka og mas-healthy naka physically and mentally kompara sauna." 
+
+<p>Maong ayaw'g kahadlok nga mawad-an ka og amigo kay ang tinuod nga amigo mosabot, mo respeto og desisyon, maminaw og dili bakakon. Ayaw kahadlok mag inusara kay mas matagaan nimo og oras imoang kaugalingon, matagaan nimo og oras ang mga tawong duol sa imoang kinabuhi. Tagaan nato sila og oras kay wala ta kabalo kung kanus-a ta o sila mawala aning kalibutana.
+
+<p>Usahay sa atoang kinabuhi manginahanglan gyud ta og oras sa atoang kaugalingon para makahunahuna, para makapangutana nga unsay mahitabo kung akoa ning ipadayun? Unsay mahitabo kung akoa ning undangan? Unsay mahitabo kung akoa ning buhaton?
+
+<p>Ang kalibutan nato karon napuno na og distractions kay malingaw nata sa atoang mga cellphone, sa atoang mga bisyo nga makalimot nata og hatag og oras sa atoang kaugalingon og makalimot nata nga naa tay mga pangandoy.
+
+<p>Ako, bata pako, baynte anyos, pwde raman unta ko magpakasayun for the next 5 years, pwde raman unta ko maginom-inom, maglingaw-lingaw. Nganong mag engage pako og physical activity taga-adlaw? Ngano magbasa pako? Nganong magsulat pako? Nganong magplano pako taga adlaw nga pwde raman unta ko mag-enjoy? Nganong maningkamot pako og trabaho para makakwarta? 
+
+<p>Kay kabalo ko nga kailangan para sa akoang personal development, kay wala nakoy ginikanan nga mo gasto para sa akoa maong naka desisyon ko nga mo undang nalang og pagskwela para magtrabaho maskin naa koy profession nga ganahan makab-ot. Akoang magulang willing mo gasto para sa akoang pagskwela pero dili ko ganahan nga magpabug-at sa iyaa, wala siya gipanganak para padak-on ko, wala siya gipanganak para mo gasto sa akoa og dili ko niya responsibilidad.
+
+<p>Pwde raman unta ko magpakasayun, diba? Dili ko kay nakita og na-experience nako ang resulta kung magpakasayun lang ta. Dili nako ganahan mo balik sa akoang daan nga kinabuhi. Dili ko ganahan nga purwisyo ko sa mga tawong palibot nako. Dili ko ganahan nga ayha rako maghimo og kabag-ohan nga gamay nalang akoang oras, nga wala nakoy oras. Dili ko ganahan nga naa nakoy pamilya ayha pa nako bag-ohon akoang kaugalingon kay dili ko ganahan nga magkulang ko sa akoang mga anak puhon, dili ko ganahan nga ma-experience nila ang dili  kompleto nga pamilya kay ako sa akoang kaugalingon ganahan pud nako ma-experience ang kompleto nga pamilya. Sauna makakita ko sa skwelahan nga naay papa, mama og anak, magpalayo ko kay masuya ko, masakitan ko og maguol ko. Pero swerte ko kay nagdako ko nga naa akoang papa og akoang mama naa sa pikas, swerte ko kay naa koy mahigugmaon nga mga lola, lolo, angkol og mga igsuon. Daghan kaayong kabataan nga nagdako nga walay ginikanan. Gipili ba diay nila nga nagdako sila nga walay ginikanan?
+
+<p>Maong ikaw, ayaw abusari ang paghigugma sa imong ginikanan, ayaw sayangi ang panahon nga naa pa sila sa imoang kiliran kay parte sa atoang kinabuhi nga mangamatay ratang tanan. Unya ayha raka mangayo og pasaylo kung wala na sila?
+
+<p>Ngano ang kinabuhi puro pag-antos og kasakit? Dili ba pwde nga maglipay-lipay rata? Nganong mo agi pata og pag-antos?  Kay unsa ang kalipay kung walay kasakit? Unsa ang kinabuhi kung walay kamatayon? Unsa ang kabag-ohan kung walay rason? Maong kanus-a man ka maghimo og kabag-ohan sa imoang kaugalingon? Ayha raba ka magbag-o kung ulahi na ang tanan? 
+
+<p>Maong unha sa imoang kaugalingon, taga-e og oras ang mga tawong duol sa imoang kasing-kasing, ayaw kahadlok nga mawad-an ka og amigo kay sa imoang paglakbay sa lisud nga dalan para sa kabag-ohan, makakita raka'g mga tawo nga ganahan pud og kabag-ohan sa ilaang kaugalingon nga magbirahanay mo pataas, dili paubos.
+  </div>
+
+  <div class="ornament">— ✦ ✦ ✦ —</div>
+  <div class="comm">
+    <h3>The Philippine League</h3>
+    <p>An online community where Filipinos unite to seek truth, share meaningful conversations, and build lasting friendships.</p>
+    <a href="https://discord.gg/yuxjaEQsvM" target="_blank" class="comm-btn">Join the Community</a>
+  </div>
+
+  <footer class="bfooter">
+    <div class="bfooter-links">
+      <a href="https://www.youtube.com/@themightymustafa" target="_blank">YouTube</a>
+      <a href="https://x.com/jadebustalino" target="_blank">𝕏</a>
+      <a href="https://www.instagram.com/themightymustafa/" target="_blank">Instagram</a>
+    </div>
+    <div class="bfooter-text">The Mighty Mustafa · Anno MMXXVI</div>
+  </footer>
+</div>
+<script>
+document.getElementById('lampBtn').addEventListener('click',function(){
+  document.body.classList.toggle('lightmode');
+  this.textContent=document.body.classList.contains('lightmode')?'🕯️':'☀️';
+});
+</script>
+</body>
+</html>
