@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Mighty Mustafa — Personal Chronicles</title>
+<link rel="icon" href="assets/images/logo.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=IM+Fell+English:ital@0;1&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<style>
+/* ═══ RESET & VARIABLES ═══ */
+:root {
+  --paper: #1C1608;
+  --paper-light: #201A0C;
+  --paper-dark: #140E06;
+  --ink: #D4C5A0;
+  --ink-medium: #B8A880;
+  --ink-light: #968860;
+  --ink-faded: #7A6C4E;
+  --rule-color: #4A3D28;
+  --accent-red: #C07040;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Cormorant Garamond', Garamond, serif;
+  --font-accent: 'IM Fell English', serif;
+  --font-fraktur: 'UnifrakturMaguntia', cursive;
+  --col-gap: 24px;
+  --section-gap: 32px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: #0A0604;
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══ LIGHT MODE OVERRIDE ═══ */
+body.lightmode {
+  --paper: #F2E8D0;
+  --paper-light: #F8F1E0;
+  --paper-dark: #E0D4B8;
+  --ink: #1A1008;
+  --ink-medium: #3D2E1A;
+  --ink-light: #6B5B45;
+  --ink-faded: #8B7D65;
+  --rule-color: #2C1810;
+  --accent-red: #6B1A1A;
+}
+body.lightmode .newspaper-bg {
+  background:
+    radial-gradient(ellipse at 20% 15%, rgba(160,130,80,0.08) 0%, transparent 40%),
+    radial-gradient(ellipse at 75% 60%, rgba(140,110,60,0.06) 0%, transparent 35%),
+    linear-gradient(180deg, var(--paper-light), var(--paper), var(--paper-dark));
+  background-attachment: fixed;
+}
+body.lightmode .lamp-toggle { background: var(--paper-dark); }
+body.lightmode .watermark { color: rgba(44,24,16,0.018); }
+
+/* ═══ PHASE 1 — MANUSCRIPT COVER ═══ */
+#book-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0A0604;
+  transition: opacity 0.8s ease;
+  perspective: 1800px;
+}
+#book-scene.hidden { opacity: 0; pointer-events: none; }
+
+.book {
+  position: relative;
+  width: min(400px, 80vw);
+  aspect-ratio: 0.7;
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
+
+.book-cover {
+  position: absolute;
+  inset: 0;
+  border-radius: 4px 10px 10px 4px;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 1.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+  z-index: 2;
+  box-shadow: 4px 4px 24px rgba(0,0,0,0.7), 1px 0 3px rgba(0,0,0,0.4);
+}
+.book-cover.opened { transform: rotateY(-160deg); }
+
+/* ── Cover front: Burgundy cloth style ── */
+.cover-front {
+  position: absolute;
+  inset: 0;
+  border-radius: 4px 10px 10px 4px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px),
+    linear-gradient(170deg, #5C1D2A 0%, #4A1520 30%, #3D1018 70%, #2A0A10 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12% 10%;
+  text-align: center;
+}
+.cover-front::before {
+  content: '';
+  position: absolute;
+  inset: 16px;
+  border: 2px solid #C9A84C;
+  border-radius: 2px 8px 8px 2px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.cover-front::after {
+  content: '';
+  position: absolute;
+  inset: 22px;
+  border: 1px solid #C9A84C;
+  border-radius: 2px 6px 6px 2px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+.cover-wear {
+  position: absolute;
+  inset: 0;
+  border-radius: 4px 10px 10px 4px;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(80,50,30,0.3) 0%, transparent 30%),
+    radial-gradient(ellipse at 100% 100%, rgba(60,40,20,0.25) 0%, transparent 25%),
+    radial-gradient(ellipse at 0% 100%, rgba(70,45,25,0.2) 0%, transparent 20%),
+    radial-gradient(ellipse at 40% 35%, rgba(255,220,160,0.06) 0%, transparent 60%);
+}
+.cover-ornament-top {
+  font-family: var(--font-accent);
+  font-size: clamp(9px, 2vw, 12px);
+  color: #C9A84C;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+.cover-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 6vw, 38px);
+  font-weight: 800;
+  color: #E8D48B;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  line-height: 1.15;
+  text-shadow: 0 1px 0 #8B6914, 0 2px 4px rgba(0,0,0,0.5);
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+.cover-subtitle {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: clamp(12px, 2.5vw, 17px);
+  color: #C9A84C;
+  opacity: 0.8;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
+}
+.cover-rule {
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+  margin: 0 auto 24px;
+  opacity: 0.5;
+  position: relative;
+  z-index: 1;
+}
+.cover-year {
+  font-family: var(--font-display);
+  font-size: clamp(11px, 2vw, 14px);
+  color: #C9A84C;
+  opacity: 0.5;
+  margin-top: 20px;
+  letter-spacing: 6px;
+  position: relative;
+  z-index: 1;
+}
+/* Spine */
+.cover-spine-edge {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 8px;
+  background: linear-gradient(90deg, #1A0808, #2A0A10, #4A1520);
+  border-radius: 4px 0 0 4px;
+  z-index: 3;
+}
+
+/* Cover back */
+.cover-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px 4px 4px 10px;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.015) 3px, rgba(0,0,0,0.015) 6px),
+    linear-gradient(180deg, #E8DCC0, #D8CCB0);
+  box-shadow: inset 2px 0 8px rgba(0,0,0,0.15);
+}
+
+/* First page */
+.book-first-page {
+  position: absolute;
+  inset: 3px 0 3px 6px;
+  border-radius: 2px 8px 8px 2px;
+  background: linear-gradient(180deg, #E8DCC0, #DDD0B4);
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15%;
+  text-align: center;
+  font-family: var(--font-accent);
+  font-style: italic;
+  color: #6B5B45;
+  font-size: clamp(11px, 2.2vw, 15px);
+  line-height: 1.8;
+}
+
+/* Page edges */
+.book-pages-edge {
+  position: absolute;
+  right: -3px; top: 6px; bottom: 6px;
+  width: 16px;
+  background: repeating-linear-gradient(180deg, #E8DCC0, #E8DCC0 1px, #D0C4A8 1px, #D0C4A8 2px);
+  border-radius: 0 3px 3px 0;
+  box-shadow: 2px 0 4px rgba(0,0,0,0.2);
+}
+
+.open-prompt {
+  position: absolute;
+  bottom: -48px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-accent);
+  font-style: italic;
+  color: #C9A84C;
+  font-size: 14px;
+  opacity: 0.5;
+  animation: pulse 2.5s ease-in-out infinite;
+  white-space: nowrap;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+.skip-intro {
+  position: fixed;
+  top: 20px; right: 24px;
+  z-index: 1001;
+  font-family: var(--font-accent);
+  font-size: 13px;
+  color: rgba(201,168,76,0.5);
+  background: none;
+  border: 1px solid rgba(201,168,76,0.2);
+  padding: 6px 16px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.skip-intro:hover { color: rgba(201,168,76,0.9); border-color: rgba(201,168,76,0.5); }
+
+/* Music control */
+.music-toggle {
+  position: fixed;
+  bottom: 24px; left: 24px;
+  z-index: 100;
+  font-size: 18px;
+  background: var(--paper-light);
+  border: 2px solid var(--rule-color);
+  border-radius: 50%;
+  width: 44px; height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s;
+  box-shadow: 0 0 12px rgba(180,140,60,0.1);
+  color: var(--ink-faded);
+  font-family: var(--font-accent);
+}
+.music-toggle:hover { transform: scale(1.1); }
+.music-toggle.playing { animation: spin-disc 3s linear infinite; }
+@keyframes spin-disc {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ═══ PHASE 2 — NEWSPAPER ═══ */
+#newspaper { opacity: 0; transition: opacity 1.2s ease 0.6s; min-height: 100vh; }
+#newspaper.visible { opacity: 1; }
+
+.newspaper-bg {
+  background:
+    radial-gradient(ellipse at 50% 20%, rgba(180,140,60,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse at 20% 15%, rgba(80,65,30,0.05) 0%, transparent 40%),
+    linear-gradient(180deg, var(--paper-light), var(--paper), var(--paper-dark));
+  background-attachment: fixed;
+}
+
+.masthead {
+  text-align: center;
+  padding: 32px 20px 0;
+  max-width: 960px;
+  margin: 0 auto;
+  border-bottom: 4px double var(--rule-color);
+}
+.mast-rule { height: 3px; background: var(--rule-color); margin-bottom: 4px; }
+.mast-rule-thin { height: 1px; background: var(--rule-color); margin-bottom: 16px; }
+.mast-title {
+  font-family: var(--font-fraktur);
+  font-size: clamp(36px, 9vw, 80px);
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.mast-sub {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: clamp(11px, 2vw, 15px);
+  color: var(--ink-medium);
+  margin-bottom: 10px;
+}
+.mast-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-accent);
+  font-size: clamp(9px, 1.5vw, 11px);
+  color: var(--ink-faded);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 8px 0 10px;
+  border-top: 1px solid var(--rule-color);
+  margin-top: 8px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Nav */
+.nav-ribbon {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  border-bottom: 2px solid var(--rule-color);
+  padding: 0 20px;
+}
+.nav-ribbon a {
+  font-family: var(--font-accent);
+  font-size: clamp(10px, 1.6vw, 13px);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--ink-medium);
+  text-decoration: none;
+  padding: 10px 14px;
+  border-left: 1px solid rgba(74,61,40,0.3);
+  transition: all 0.3s;
+  position: relative;
+}
+.nav-ribbon a:first-child { border-left: none; }
+.nav-ribbon a:hover { color: var(--accent-red); }
+.nav-ribbon a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent-red);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+.nav-ribbon a:hover::after { transform: scaleX(1); }
+
+/* Lamp toggle */
+.lamp-toggle {
+  position: fixed;
+  bottom: 24px; right: 24px;
+  z-index: 100;
+  font-size: 22px;
+  background: var(--paper-light);
+  border: 2px solid var(--rule-color);
+  border-radius: 50%;
+  width: 44px; height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s;
+  box-shadow: 0 0 16px rgba(180,140,60,0.1);
+}
+.lamp-toggle:hover { transform: scale(1.1); }
+
+/* Content */
+.ncontent { max-width: 960px; margin: 0 auto; padding: 24px 20px 60px; }
+
+.columns-3 { display: grid; grid-template-columns: repeat(3, 1fr); }
+.columns-2 { display: grid; grid-template-columns: 1fr 1fr; }
+
+.col {
+  padding: 0 var(--col-gap);
+  border-right: 1px solid rgba(74,61,40,0.3);
+}
+.col:last-child { border-right: none; padding-right: 0; }
+.col:first-child { padding-left: 0; }
+.col-span-2 { grid-column: span 2; }
+
+.sec-header {
+  text-align: center;
+  padding: 20px 0 12px;
+  border-bottom: 1px solid var(--rule-color);
+  margin-bottom: 16px;
+}
+.sec-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(14px, 2.5vw, 20px);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--ink);
+}
+.sec-rule { height: 2px; background: var(--rule-color); margin: var(--section-gap) 0 4px; }
+.sec-rule-thin { height: 1px; background: rgba(74,61,40,0.3); margin: 0 0 var(--section-gap); }
+
+/* Articles */
+.headline {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 3.5vw, 30px);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.headline-sm {
+  font-family: var(--font-display);
+  font-size: clamp(14px, 2.2vw, 20px);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+.byline {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: clamp(10px, 1.5vw, 12px);
+  color: var(--ink-faded);
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+.body-text {
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.8vw, 17px);
+  color: var(--ink-medium);
+  line-height: 1.75;
+  text-align: justify;
+  hyphens: auto;
+}
+.body-text + .body-text { text-indent: 1.5em; }
+.drop-cap::first-letter {
+  font-family: var(--font-display);
+  font-weight: 800;
+  float: left;
+  font-size: 3.8em;
+  line-height: 0.75;
+  padding: 4px 8px 0 0;
+  color: var(--ink);
+}
+
+.ornament {
+  text-align: center;
+  font-size: 16px;
+  color: var(--ink-faded);
+  margin: 16px 0;
+  opacity: 0.5;
+  letter-spacing: 8px;
+  user-select: none;
+}
+.sep {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rule-color), transparent);
+  margin: 20px 0;
+  opacity: 0.4;
+}
+
+/* Blog entries */
+.blog-entry { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px dotted rgba(74,61,40,0.3); }
+.blog-entry:last-child { border-bottom: none; }
+.date-stamp {
+  font-family: var(--font-accent);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--ink-faded);
+  margin-bottom: 2px;
+}
+.blog-link {
+  font-family: var(--font-display);
+  font-size: clamp(15px, 2vw, 19px);
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s, color 0.3s;
+}
+.blog-link:hover { border-color: var(--accent-red); color: var(--accent-red); }
+.excerpt {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--ink-light);
+  line-height: 1.6;
+  margin-top: 4px;
+}
+
+/* Community box */
+.comm-box {
+  border: 2px solid var(--rule-color);
+  padding: 16px;
+  margin: 16px 0;
+  text-align: center;
+  background: rgba(74,61,40,0.05);
+}
+.comm-box h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+.comm-btn {
+  display: inline-block;
+  font-family: var(--font-accent);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--paper);
+  background: var(--ink);
+  padding: 10px 28px;
+  text-decoration: none;
+  margin-top: 10px;
+  transition: all 0.3s;
+}
+.comm-btn:hover { background: var(--accent-red); color: #fff; }
+
+/* Directory */
+.dir-list { list-style: none; padding: 0; }
+.dir-list li {
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 6px 0;
+  border-bottom: 1px dotted rgba(74,61,40,0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.dir-list li:last-child { border-bottom: none; }
+.dir-list a {
+  color: var(--ink-medium);
+  text-decoration: none;
+  font-family: var(--font-accent);
+  transition: color 0.3s;
+}
+.dir-list a:hover { color: var(--accent-red); }
+.dir-label {
+  font-family: var(--font-accent);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--ink-faded);
+}
+
+/* Watermark */
+.watermark {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-fraktur);
+  font-size: clamp(120px, 30vw, 320px);
+  color: rgba(180,150,80,0.025);
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+}
+
+/* Footer */
+.nfooter {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px 20px 40px;
+  text-align: center;
+  border-top: 3px double var(--rule-color);
+}
+.nfooter-text {
+  font-family: var(--font-accent);
+  font-size: 11px;
+  color: var(--ink-faded);
+  letter-spacing: 2px;
+  line-height: 1.8;
+}
+
+/* Grain */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px;
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in { opacity: 0; animation: fadeUp 0.8s ease forwards; }
+.d1 { animation-delay: .15s; }
+.d2 { animation-delay: .3s; }
+.d3 { animation-delay: .45s; }
+
+/* ═══ COLLAPSIBLE ARCHIVES ═══ */
+.archive-category {
+  border-bottom: 2px solid var(--rule-color);
+}
+.archive-category:last-child { border-bottom: none; }
+.archive-category summary {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2.5vw, 22px);
+  font-weight: 700;
+  color: var(--ink);
+  padding: 16px 0;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color 0.3s;
+  user-select: none;
+}
+.archive-category summary::-webkit-details-marker { display: none; }
+.archive-category summary::after {
+  content: '▸';
+  font-size: 18px;
+  color: var(--ink-faded);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+.archive-category[open] summary::after { transform: rotate(90deg); }
+.archive-category summary:hover { color: var(--accent-red); }
+.archive-category summary .cat-count {
+  font-family: var(--font-accent);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--ink-faded);
+  letter-spacing: 1px;
+  margin-left: 10px;
+}
+.archive-category summary .cat-label { display: flex; align-items: baseline; gap: 8px; flex: 1; }
+.archive-list {
+  padding: 0 0 20px 0;
+  animation: aSlide 0.3s ease;
+}
+@keyframes aSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.archive-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 8px 0 8px 20px;
+  border-bottom: 1px dotted rgba(74,61,40,0.2);
+  gap: 12px;
+}
+.archive-item:last-child { border-bottom: none; }
+.archive-item a {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 2vw, 18px);
+  color: var(--ink-medium);
+  text-decoration: none;
+  transition: color 0.3s;
+  flex: 1;
+}
+.archive-item a:hover { color: var(--accent-red); }
+.archive-item .item-meta {
+  font-family: var(--font-accent);
+  font-size: 10px;
+  color: var(--ink-faded);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.archive-item .item-tag {
+  font-family: var(--font-accent);
+  font-size: 9px;
+  color: var(--accent-red);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 1px solid var(--accent-red);
+  padding: 1px 6px;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+.archive-sub {
+  font-family: var(--font-accent);
+  font-size: 11px;
+  color: var(--ink-faded);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding: 12px 0 4px 20px;
+  opacity: 0.7;
+}
+.archive-sub:first-child { padding-top: 0; }
+.archive-empty {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-faded);
+  padding: 4px 0 4px 20px;
+  opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .columns-3, .columns-2 { grid-template-columns: 1fr; }
+  .col { padding: 0; border-right: none; border-bottom: 1px solid rgba(74,61,40,0.15); padding-bottom: 20px; margin-bottom: 20px; }
+  .col:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+  .col-span-2 { grid-column: span 1; }
+  .mast-meta { justify-content: center; text-align: center; }
+  .nav-ribbon a { padding: 8px 10px; font-size: 10px; letter-spacing: 1px; border-left: none; }
+  :root { --col-gap: 0px; --section-gap: 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<div id="book-scene">
+  <button class="skip-intro" id="skipBtn">Skip Intro</button>
+
+  <div class="book" id="book" role="button" tabindex="0" aria-label="Click to open">
+    <div class="book-pages-edge"></div>
+
+    <div class="book-first-page">
+      <div>
+        <em>"Filipinos don't realize that victory<br>
+        is the child of struggle, that joy blossoms<br>
+        from suffering, and redemption is<br>
+        a product of sacrifice."</em>
+        <br><br>
+        <span style="font-size:0.85em;opacity:0.6;">— José Rizal</span>
+      </div>
+    </div>
+
+    <div class="book-cover" id="bookCover">
+      <div class="cover-front">
+        <div class="cover-wear"></div>
+        <div class="cover-spine-edge"></div>
+        <div class="cover-title">The Mighty<br>Mustafa</div>
+        <div class="cover-subtitle">Personal Chronicles</div>
+      </div>
+      <div class="cover-back"></div>
+    </div>
+
+    <div class="open-prompt">— click to open —</div>
+  </div>
+</div>
+
+<div id="newspaper" class="newspaper-bg">
+  <div class="watermark" aria-hidden="true">M</div>
+  <button class="lamp-toggle" id="lampBtn" title="Toggle Light/Dark">☀️</button>
+
+  <header class="masthead fade-in">
+    <div class="mast-rule"></div>
+    <div class="mast-rule-thin"></div>
+    <h1 class="mast-title">The Mustafa Chronicle</h1>
+    <div class="mast-sub">A periodical of personal reflections, documentation &amp; community discourse</div>
+    <div class="mast-meta">
+      <span>The Philippine Islands</span>
+      <span>Vol. III · No. 1 · Anno MMXXVI</span>
+      <span>A Personal Periodical</span>
+    </div>
+  </header>
+
+  <nav class="nav-ribbon fade-in d1">
+    <a href="#principal">Principal</a>
+    <a href="#reflections">Reflections</a>
+    <a href="#archives">Archives</a>
+    <a href="#community-section">Community</a>
+    <a href="#directory">Directory</a>
+  </nav>
+
+  <main class="ncontent">
+
+    <div id="principal">
+      <div class="sec-rule"></div>
+      <div class="sec-rule-thin"></div>
+
+      <div class="columns-3 fade-in d2">
+        <div class="col col-span-2">
+          <div class="sec-header"><h2>Principal Article</h2></div>
+
+          <h2 class="headline" style="font-size:clamp(24px,5vw,42px);margin-bottom:8px;">
+            On Being a Student of Life: <br>
+            <em style="font-weight:400;font-size:0.7em;">A Declaration of Purpose</em>
+          </h2>
+          <div class="byline">By The Mighty Mustafa</div>
+
+          <p class="body-text drop-cap">
+            Assalamu alaikum, peace be upon you, dear reader. I am Mustafa and I welcome you to this chronicle of a life lived in perpetual study. Not the study of academies and examination halls, though those have their place, but the deeper study, the kind undertaken by those who believe that every encounter, every setback, every quiet morning holds a lesson waiting to be discovered.
+          </p>
+          <p class="body-text">
+            These pages serve as my personal documentation: a record of thoughts, reflections, plans, and the occasional outburst of wonder at this strange and beautiful existence. I write in the tradition of those who came before, the ilustrados who believed that the pen, wielded with honesty, could illuminate even the darkest corner of human experience.
+          </p>
+          <p class="body-text">
+            I document the small and large moments that make up this journey. If you find something here that resonates, then these chronicles have served their purpose.
+          </p>
+
+          <div class="ornament">— ✦ ✦ ✦ —</div>
+        </div>
+
+        <div class="col">
+          <div class="sec-header"><h2>Notices</h2></div>
+          <div class="comm-box">
+            <h3>The Philippine League</h3>
+            <p class="body-text" style="font-size:13px;text-align:center;margin-bottom:8px;">
+              An online community where Filipinos unite to seek truth, share meaningful conversations, and build lasting friendships.
+            </p>
+            <a href="https://discord.gg/yuxjaEQsvM" target="_blank" class="comm-btn">Join the League</a>
+          </div>
+          <div class="sep"></div>
+          <div style="margin-top:12px;">
+            <div class="date-stamp" style="margin-bottom:8px;">Correspondence &amp; Channels</div>
+            <ul class="dir-list">
+              <li><a href="https://www.youtube.com/@themightymustafa" target="_blank">YouTube</a><span class="dir-label">Video</span></li>
+              <li><a href="https://x.com/jadebustalino" target="_blank">𝕏</a><span class="dir-label">Dispatches</span></li>
+              <li><a href="https://www.instagram.com/themightymustafa/" target="_blank">Instagram</a><span class="dir-label">Photographs</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="archives">
+      <div class="sec-rule"></div>
+      <div class="sec-rule-thin"></div>
+      <div class="sec-header fade-in"><h2>Archives &amp; Collections</h2></div>
+
+      <div class="fade-in" style="max-width:700px;margin:0 auto;">
+
+        <details class="archive-category" open>
+          <summary>
+            <span class="cat-label">Blog <span class="cat-count">5 entries</span></span>
+          </summary>
+          <div class="archive-list">
+            <div class="archive-item">
+              <a href="blog/paglalakbaytungosasarili.html">Paglalakbay Tungo sa Sarili</a>
+              <span class="item-meta">25 Jul 2023</span>
+            </div>
+            <div class="archive-item">
+              <a href="blog/kabag-ohan.html">Kabag-ohan</a>
+              <span class="item-meta">2023</span>
+            </div>
+            <div class="archive-item">
+              <a href="blog/plano.html">Plano</a>
+              <span class="item-meta">1 Jan 2023</span>
+            </div>
+            <div class="archive-item">
+              <a href="blog/sulat.html">Sulat</a>
+              <span class="item-meta">1 Jan 2023</span>
+            </div>
+            <div class="archive-item">
+              <a href="blog/bag-ongtuig.html">Bag-ong Tuig</a>
+              <span class="item-meta">1 Jan 2023</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="archive-category">
+          <summary>
+            <span class="cat-label">Quotes <span class="cat-count">2 collections</span></span>
+          </summary>
+          <div class="archive-list">
+            <div class="archive-sub">Bisaya</div>
+            <div class="archive-item">
+              <a href="#">Coming soon</a>
+              <span class="item-tag">Soon</span>
+            </div>
+            <div class="archive-sub">English</div>
+            <div class="archive-item">
+              <a href="#">Coming soon</a>
+              <span class="item-tag">Soon</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="archive-category">
+          <summary>
+            <span class="cat-label">Business Ideas <span class="cat-count">1 entry</span></span>
+          </summary>
+          <div class="archive-list">
+            <div class="archive-item">
+              <a href="#">Classic Restaurant</a>
+              <span class="item-tag">Soon</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="archive-category">
+          <summary>
+            <span class="cat-label">Book Recommendations <span class="cat-count">1 entry</span></span>
+          </summary>
+          <div class="archive-list">
+            <div class="archive-item">
+              <a href="#">The Compound Effect</a>
+              <span class="item-tag">Soon</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="archive-category">
+          <summary>
+            <span class="cat-label">About Philippines <span class="cat-count">2 entries</span></span>
+          </summary>
+          <div class="archive-list">
+            <div class="archive-item">
+              <a href="#">Issues</a>
+              <span class="item-tag">Soon</span>
+            </div>
+            <div class="archive-item">
+              <a href="#">How to Fix Philippines</a>
+              <span class="item-tag">Soon</span>
+            </div>
+          </div>
+        </details>
+
+      </div>
+
+      <div class="ornament" style="margin-top:24px;">— ✦ ✦ ✦ —</div>
+      <p style="font-family:var(--font-accent);font-style:italic;font-size:12px;color:var(--ink-faded);text-align:center;line-height:1.8;padding:8px 0;">
+        ✦ Further collections shall appear as the Author sees fit. ✦
+      </p>
+    </div>
+
+    <div id="reflections">
+      <div class="sec-rule"></div>
+      <div class="sec-rule-thin"></div>
+      <div class="sec-header fade-in"><h2>Personal Reflections</h2></div>
+
+      <div class="columns-2 fade-in">
+        <div class="col">
+          <h3 class="headline-sm">On the Art of Documentation</h3>
+          <div class="byline">A reflection by the Publisher</div>
+          <p class="body-text drop-cap">
+            To document one's life is both an act of vanity and an act of humility. Vanity, because one presumes that their days are worth recording. Humility, because the very act of writing forces you to confront who you truly are, stripped of pretension, laid bare upon the page.
+          </p>
+          <p class="body-text">
+            I have chosen this path not because I believe my story is extraordinary, but because I believe every story, told with sincerity, holds extraordinary power.
+          </p>
+        </div>
+        <div class="col">
+          <h3 class="headline-sm">On Community &amp; Brotherhood</h3>
+          <div class="byline">Correspondence from The Philippine League</div>
+          <p class="body-text drop-cap">
+            Rizal understood, perhaps better than anyone of his generation, that no man achieves enlightenment alone. He formed the Liga Filipina not as a political instrument but as a fraternity of minds, a space where ideas could be exchanged freely and friendships forged in honest discourse.
+          </p>
+          <p class="body-text">
+            The Philippine League carries this torch into the digital age. Filipinos from every province come together to share perspectives, challenge assumptions, and remind each other that we are never truly alone.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="community-section">
+      <div class="sec-rule"></div>
+      <div class="sec-rule-thin"></div>
+      <div class="sec-header fade-in"><h2>The Philippine League</h2></div>
+
+      <div class="fade-in" style="text-align:center;max-width:580px;margin:0 auto;">
+        <p class="body-text" style="text-align:center;margin-bottom:16px;">
+          A gathering of Filipinos united in the pursuit of truth, self-improvement, and lasting friendship. All are welcome who come in good faith.
+        </p>
+        <a href="https://discord.gg/yuxjaEQsvM" target="_blank" class="comm-btn" style="margin-top:12px;">Join the Community</a>
+      </div>
+    </div>
+
+    <div id="directory">
+      <div class="sec-rule"></div>
+      <div class="sec-rule-thin"></div>
+      <div class="sec-header fade-in"><h2>Directory of Correspondences</h2></div>
+
+      <div class="columns-3 fade-in" style="max-width:700px;margin:0 auto;">
+        <div class="col">
+          <div class="date-stamp" style="margin-bottom:8px;">Video Channel</div>
+          <a href="https://www.youtube.com/@themightymustafa" target="_blank" class="blog-link" style="font-size:15px;">YouTube</a>
+          <p class="excerpt" style="font-size:12px;">Vlogs, reflections, and documentation of the everyday.</p>
+        </div>
+        <div class="col">
+          <div class="date-stamp" style="margin-bottom:8px;">Short Dispatches</div>
+          <a href="https://x.com/jadebustalino" target="_blank" class="blog-link" style="font-size:15px;">𝕏</a>
+          <p class="excerpt" style="font-size:12px;">Brief thoughts and observations.</p>
+        </div>
+        <div class="col">
+          <div class="date-stamp" style="margin-bottom:8px;">Visual Record</div>
+          <a href="https://www.instagram.com/themightymustafa/" target="_blank" class="blog-link" style="font-size:15px;">Instagram</a>
+          <p class="excerpt" style="font-size:12px;">Photographs and moments captured.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="nfooter fade-in">
+    <div style="font-size:12px;color:var(--ink-faded);letter-spacing:8px;margin-bottom:10px;opacity:0.4;">— ✦ ❖ ✦ —</div>
+    <div class="nfooter-text">
+      Published by <strong>The Mighty Mustafa</strong><br><br>
+      <em>"Filipinos don't realize that victory<br>
+      is the child of struggle, that joy blossoms<br>
+      from suffering, and redemption is<br>
+      a product of sacrifice."</em><br>
+      <span style="opacity:0.6;">— José Rizal</span><br><br>
+      <span style="opacity:0.4;">Anno MMXXVI</span>
+    </div>
+  </footer>
+</div>
+
+  <audio id="bgMusic" loop preload="auto">
+    <source src="assets/music/bg.mp3" type="audio/mpeg">
+  </audio>
+  <button class="music-toggle" id="musicBtn" title="Toggle Music">♫</button>
+
+<script>
+(function() {
+  var bs = document.getElementById('book-scene');
+  var bc = document.getElementById('bookCover');
+  var bk = document.getElementById('book');
+  var np = document.getElementById('newspaper');
+  var sk = document.getElementById('skipBtn');
+  var lp = document.getElementById('lampBtn');
+  var music = document.getElementById('bgMusic');
+  var musicBtn = document.getElementById('musicBtn');
+  var opened = false;
+  var musicPlaying = false;
+
+  music.volume = 0.35;
+
+  function startMusic() {
+    if (musicPlaying) return;
+    music.play().then(function() {
+      musicPlaying = true;
+      musicBtn.classList.add('playing');
+      musicBtn.textContent = '♫';
+    }).catch(function() {
+    });
+  }
+
+  function openBook() {
+    if (opened) return;
+    opened = true;
+    startMusic();
+    bc.classList.add('opened');
+    setTimeout(function() { bs.classList.add('hidden'); np.classList.add('visible'); }, 4000);
+    setTimeout(function() { bs.style.display = 'none'; sk.style.display = 'none'; }, 6000);
+  }
+
+  function skipIntro() {
+    bs.style.transition = 'opacity 0.4s';
+    bs.classList.add('hidden');
+    np.classList.add('visible');
+    startMusic();
+    setTimeout(function() { bs.style.display = 'none'; sk.style.display = 'none'; }, 600);
+  }
+
+  bk.addEventListener('click', openBook);
+  bk.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openBook(); }
+  });
+  sk.addEventListener('click', function(e) { e.stopPropagation(); skipIntro(); });
+
+  /* Music toggle */
+  musicBtn.addEventListener('click', function() {
+    if (musicPlaying) {
+      music.pause();
+      musicPlaying = false;
+      musicBtn.classList.remove('playing');
+      musicBtn.textContent = '♪';
+      musicBtn.style.opacity = '0.5';
+    } else {
+      music.play().then(function() {
+        musicPlaying = true;
+        musicBtn.classList.add('playing');
+        musicBtn.textContent = '♫';
+        musicBtn.style.opacity = '1';
+      }).catch(function() {});
+    }
+  });
+
+  lp.addEventListener('click', function() {
+    document.body.classList.toggle('lightmode');
+    lp.textContent = document.body.classList.contains('lightmode') ? '🕯️' : '☀️';
+  });
+
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.style.animationPlayState = 'running'; obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '50px' });
+  document.querySelectorAll('.fade-in').forEach(function(el) { el.style.animationPlayState = 'paused'; obs.observe(el); });
+
+  document.querySelectorAll('.nav-ribbon a').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var h = this.getAttribute('href');
+      if (h.charAt(0) === '#') { e.preventDefault(); var t = document.querySelector(h); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
